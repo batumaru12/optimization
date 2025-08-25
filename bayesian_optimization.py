@@ -1,22 +1,23 @@
+import pandas as pd
 import numpy as np
 from skopt import Optimizer
 from skopt.space import Real
 
-X = np.array([[ 1., 10, 0.05, 60., 180. ],
-              [ 2., 20, 0.2, 25., 60. ],
-              [ 3., 10, 0.1, 40., 120. ],
-              [ 4., 15, 0.1, 40., 60. ],
-              [ 5., 5, 0.05, 25., 120. ]], dtype=float)
+df = pd.read_csv("./data/table.csv")
+target_col = "yield"
 
-Y = -np.array([46, 22, 62, 53, 14], dtype=float)
+X = df[["current", "Init_molarity", "electrolyte", "temp", "time"]].values
+Y_score = df["yield"].values
 
-space = [ 
-    Real( 1, 6, name="current"),
-    Real( 5, 30, name="Init_molarity"),
-    Real( 0.05, 0.25, name="electrolyte"),
-    Real( 20, 80, name="temp"),
-    Real( 60, 240, name="time"),
-    ]
+Y = -Y_score  
+
+space = [
+    Real(df["current"].min(),       df["current"].max(),       name="current"),
+    Real(df["Init_molarity"].min(),df["Init_molarity"].max(), name="Init_molarity"),
+    Real(df["electrolyte"].min(),  df["electrolyte"].max(),   name="electrolyte"),
+    Real(df["temp"].min(),         df["temp"].max(),          name="temp"),
+    Real(df["time"].min(),         df["time"].max(),          name="time"),
+]
 
 opt = Optimizer(
     dimensions=space,
@@ -28,4 +29,7 @@ opt = Optimizer(
 opt.tell(X.tolist(), Y.tolist())
 
 next_x = opt.ask()
-print(next_x)
+print("次に試すパラメータ:", next_x)
+
+suggestion = {name: val for name, val in zip(["current","Init_molarity","electrolyte","temp","time"], next_x)}
+print(suggestion)
