@@ -6,7 +6,7 @@ from skopt.space import Real
 df = pd.read_csv("./data/table.csv")
 target_col = "yield"
 
-X = df[["current", "Init_molarity", "electrolyte", "temp", "time"]].values
+X = df.drop(["yield"], axis=1)
 Y_score = df["yield"].values
 
 Y = -Y_score  
@@ -26,7 +26,7 @@ opt = Optimizer(
     random_state=0
 )
 
-opt.tell(X.tolist(), Y.tolist())
+opt.tell(X.values.tolist(), Y.tolist())
 
 next_x = opt.ask()
 print("次に試すパラメータ:", next_x)
