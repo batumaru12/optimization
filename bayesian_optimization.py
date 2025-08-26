@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from skopt import Optimizer
 from skopt.space import Real
 import glob
