@@ -2,8 +2,11 @@ import pandas as pd
 import numpy as np
 from skopt import Optimizer
 from skopt.space import Real
+import glob
 
-df = pd.read_csv("./data/table.csv")
+file_name = glob.glob("./data/*result.csv")[0]
+
+df = pd.read_csv(file_name)
 target_col = "yield"
 
 X = df.drop(["yield"], axis=1)
@@ -11,13 +14,8 @@ Y_score = df["yield"].values
 
 Y = -Y_score  
 
-space = [
-    Real(df["current"].min(),       df["current"].max(),       name="current"),
-    Real(df["Init_molarity"].min(),df["Init_molarity"].max(), name="Init_molarity"),
-    Real(df["electrolyte"].min(),  df["electrolyte"].max(),   name="electrolyte"),
-    Real(df["temp"].min(),         df["temp"].max(),          name="temp"),
-    Real(df["time"].min(),         df["time"].max(),          name="time"),
-]
+space = []
+
 
 opt = Optimizer(
     dimensions=space,
