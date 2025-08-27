@@ -2,6 +2,6 @@
 .venv
 
 # データ保存フォルダ
-/data/*
-!/data/sample_optimization.csv
-!/data/sample_setup.csv
+/optimization/data/*
+!/optimization/data/sample_optimization.csv
+!/optimization/data/sample_setup.csv
