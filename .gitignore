@@ -1,4 +1,7 @@
+# 環境ファイル
 .venv
+
+# データ保存フォルダ
 /data/*
 !/data/sample_optimization.csv
 !/data/sample_setup.csv
