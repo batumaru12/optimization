@@ -3,7 +3,7 @@ from skopt import Optimizer
 from skopt.space import Real
 import glob
 
-data_file_name = glob.glob("./data/*result.csv")[0]
+data_file_name = glob.glob("./data/*optimization.csv")[0]
 maxmin_file_name = glob.glob("./data/*maxmin.csv")[0]
 
 df = pd.read_csv(data_file_name)
@@ -28,8 +28,7 @@ opt = Optimizer(
 
 opt.tell(X.values.tolist(), Y.tolist())
 
-next_x = opt.ask()
-print("次に試すパラメータ:", next_x)
+next_X = opt.ask()
 
-suggestion = {name: val for name, val in zip(["current","Init_molarity","electrolyte","temp","time"], next_x)}
+suggestion = {name: round(val, 4) for name, val in zip(X.columns.values, next_X)}
 print(suggestion)
