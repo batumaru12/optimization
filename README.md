@@ -1,6 +1,9 @@
 # 最適化による収率推定
 最適化により実験データから，より収率が高くなる実験環境を推定する．
 
+## アップデート
+- \[2025.09.02\] ログが[sample_log.csv](https://github.com/batumaru12/optimization/blob/main/optimization/data/sample_log.csv "log faile")のように保存されるようになりました。
+
 ## 環境準備
 
 <details>
