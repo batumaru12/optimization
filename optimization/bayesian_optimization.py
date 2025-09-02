@@ -11,8 +11,8 @@ df = pd.read_csv(data_file_name)
 maxmin = pd.read_csv(maxmin_file_name)
 target_col = "yield"
 
-X = df.drop(["yield"], axis=1)
-Y_score = df["yield"].values
+X = df.drop([target_col], axis=1)
+Y_score = df[target_col].values
 
 Y = -Y_score
 

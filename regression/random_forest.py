@@ -5,7 +5,7 @@ from sklearn.model_selection import cross_val_score, KFold
 from sklearn.preprocessing import StandardScaler
 import glob
 
-df_name = glob.glob("./data/*regression.csv")[0]
+df_name = glob.glob("./regression/data/*regression.csv")[0]
 
 df = pd.read_csv(df_name)
 
