@@ -59,7 +59,7 @@ tzdata          2025.2
 仮想環境作成（Anaconda使用時）
 
 ```shell
-conda create -n [仮想環境名]
+conda create -n [仮想環境名] python=3.12
 ```
 
 作った環境へ移動
