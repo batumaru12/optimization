@@ -1,8 +1,10 @@
+import os
 import pandas as pd
 import numpy as np
 from skopt import Optimizer
 from skopt.space import Real
 import glob
+from datetime import datetime, timezone, timedelta
 
 data_file_name = glob.glob("./optimization/data/*optimization.csv")[0]
 maxmin_file_name = glob.glob("./optimization/data/*setup.csv")[0]
@@ -20,16 +22,16 @@ space = []
 for i in range(X.shape[1]):
     space.append(Real(maxmin.iloc[0, i], maxmin.iloc[1, i], name=X.columns.values[i]))
 
-opt = Optimizer(
+ET_opt = Optimizer(
     dimensions=space,
     base_estimator="ET",
     acq_func="EI",
     random_state=0
 )
 
-opt.tell(X.values.tolist(), Y.tolist())
+ET_opt.tell(X.values.tolist(), Y.tolist())
 
-next_X = opt.ask()
+next_X = ET_opt.ask()
 
 suggestion = {name: round(val, 4) for name, val in zip(X.columns.values, next_X)}
 print(suggestion)
@@ -40,3 +42,18 @@ append_df = pd.DataFrame([[append_row.get(c, np.nan) for c in df.columns]], colu
 append_df.to_csv(data_file_name, mode="a", header=False, index=False, float_format="%.4f")
 
 print(f"最適化結果を{data_file_name}に追記しました")
+
+log_file = glob.glob("./optimization/data/*log.csv")[0]
+
+run_at = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S %Z")
+
+log_row = {
+    "run_at": run_at,
+    "model": "extra_trees",
+    **suggestion
+}
+
+write_header = os.path.getsize(log_file) == 0
+pd.DataFrame([log_row]).to_csv(log_file, mode="a", header=write_header, index=False)
+
+print(f"ログを{log_file}に追記しました")

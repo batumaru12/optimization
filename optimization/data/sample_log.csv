@@ -1,0 +1,4 @@
+run_at,model,current,Init_molarity,electrolyte,temp,time
+2025-09-02 19:47:16 UTC+09:00,bayesian_optimization,5.9284,84.4266,0.8579,84.7252,187.0691
+2025-09-02 19:48:21 UTC+09:00,extra_trees,5.9284,84.4266,0.8579,84.7252,187.0691
+2025-09-02 19:48:47 UTC+09:00,random_forest,5.9284,84.4266,0.8579,84.7252,187.0691
