@@ -5,3 +5,7 @@
 /optimization/data/*
 !/optimization/data/sample_optimization.csv
 !/optimization/data/sample_setup.csv
+
+# データ保存フォルダ
+/regression/data/*
+!/regression/data
