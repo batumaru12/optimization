@@ -8,4 +8,4 @@
 
 # データ保存フォルダ
 /regression/data/*
-!/regression/data
+!/regression/data/
