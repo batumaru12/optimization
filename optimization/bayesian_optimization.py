@@ -4,8 +4,8 @@ from skopt import Optimizer
 from skopt.space import Real
 import glob
 
-data_file_name = glob.glob("./data/*optimization.csv")[0]
-maxmin_file_name = glob.glob("./data/*setup.csv")[0]
+data_file_name = glob.glob("./optimization/data/*optimization.csv")[0]
+maxmin_file_name = glob.glob("./optimization/data/*setup.csv")[0]
 
 df = pd.read_csv(data_file_name)
 maxmin = pd.read_csv(maxmin_file_name)
