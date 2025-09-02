@@ -9,3 +9,6 @@
 # データ保存フォルダ
 /regression/data/*
 !/regression/data/sample_regression.csv
+
+# 要望メモファイル
+memo.txt
