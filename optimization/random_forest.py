@@ -8,6 +8,7 @@ from datetime import datetime, timezone, timedelta
 
 data_file_name = glob.glob("./optimization/data/*optimization.csv")[0]
 maxmin_file_name = glob.glob("./optimization/data/*setup.csv")[0]
+log_file = glob.glob("./optimization/data/*log.csv")[0]
 
 df = pd.read_csv(data_file_name)
 maxmin = pd.read_csv(maxmin_file_name)
@@ -42,8 +43,6 @@ append_df = pd.DataFrame([[append_row.get(c, np.nan) for c in df.columns]], colu
 append_df.to_csv(data_file_name, mode="a", header=False, index=False, float_format="%.4f")
 
 print(f"最適化結果を{data_file_name}に追記しました")
-
-log_file = glob.glob("./optimization/data/*log.csv")[0]
 
 run_at = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S %Z")
 

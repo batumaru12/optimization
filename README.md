@@ -2,6 +2,7 @@
 最適化により実験データから，より収率が高くなる実験環境を推定する．
 
 ## アップデート
+
 - \[2025.09.02\] ログが[sample_log.csv](https://github.com/batumaru12/optimization/blob/main/optimization/data/sample_log.csv "log faile")のように保存されるようになりました。
 
 ## 環境準備
@@ -143,4 +144,3 @@ tzdata                    2025.2                   pypi_0    pypi
 |6|30|0.25|80|240|
 
 </details>
-
