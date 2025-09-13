@@ -53,6 +53,6 @@ log_row = {
 }
 
 write_header = os.path.getsize(log_file) == 0
-pd.DataFrame([log_row]).to_csv(log_file, mode="a", header=write_header, index=False)
+pd.DataFrame([log_row]).to_csv(log_file, mode="a", header=write_header, index=False, float_format="%.4f")
 
 print(f"ログを{log_file}に追記しました")
